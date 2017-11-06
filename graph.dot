@@ -1,0 +1,32 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_security_group.external_elb" [label = "aws_security_group.external_elb", shape = "box"]
+		"[root] aws_security_group.internal_elb" [label = "aws_security_group.internal_elb", shape = "box"]
+		"[root] provider.aws" [label = "provider.aws", shape = "diamond"]
+		"[root] aws_security_group.external_elb" -> "[root] provider.aws"
+		"[root] aws_security_group.external_elb" -> "[root] var.environment"
+		"[root] aws_security_group.external_elb" -> "[root] var.name"
+		"[root] aws_security_group.external_elb" -> "[root] var.namespaced"
+		"[root] aws_security_group.external_elb" -> "[root] var.security_groups"
+		"[root] aws_security_group.external_elb" -> "[root] var.tags"
+		"[root] aws_security_group.external_elb" -> "[root] var.vpc_id"
+		"[root] aws_security_group.internal_elb" -> "[root] provider.aws"
+		"[root] aws_security_group.internal_elb" -> "[root] var.cidr"
+		"[root] aws_security_group.internal_elb" -> "[root] var.environment"
+		"[root] aws_security_group.internal_elb" -> "[root] var.name"
+		"[root] aws_security_group.internal_elb" -> "[root] var.namespaced"
+		"[root] aws_security_group.internal_elb" -> "[root] var.security_groups"
+		"[root] aws_security_group.internal_elb" -> "[root] var.tags"
+		"[root] aws_security_group.internal_elb" -> "[root] var.vpc_id"
+		"[root] output.external_elb" -> "[root] aws_security_group.external_elb"
+		"[root] output.internal_elb" -> "[root] aws_security_group.internal_elb"
+		"[root] output.security_group_ids" -> "[root] aws_security_group.external_elb"
+		"[root] output.security_group_ids" -> "[root] aws_security_group.internal_elb"
+		"[root] root" -> "[root] output.external_elb"
+		"[root] root" -> "[root] output.internal_elb"
+		"[root] root" -> "[root] output.security_group_ids"
+	}
+}
+
